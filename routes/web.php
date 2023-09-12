@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post("article", [PostController::class, 'create']);
+Route::get("article/{limit}/{offset}", [PostController::class, 'index']);
+Route::get("article/{id}", [PostController::class, 'show']);
+Route::put("article/{id}", [PostController::class, 'update']);
+Route::delete("article/{id}", [PostController::class, 'delete']);
+
