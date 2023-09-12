@@ -18,9 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post("article", [PostController::class, 'create']);
-Route::get("article/{limit}/{offset}", [PostController::class, 'index']);
-Route::get("article/{id}", [PostController::class, 'show']);
-Route::put("article/{id}", [PostController::class, 'update']);
-Route::delete("article/{id}", [PostController::class, 'delete']);
+Route::get("post", [PostController::class, 'post'])->name('post');
+Route::get("post-edit/{id}", [PostController::class, 'edit'])->name('post.edit');
 
