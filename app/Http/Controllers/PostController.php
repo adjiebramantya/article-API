@@ -86,11 +86,77 @@ class PostController extends Controller
         return view('post.index',compact('data'));
     }
 
-    public function edit(Request $request,$id){
+    function createView(){
+        return view('post.add');
+    }
 
-        $data = Post::select('id','title','content','category','status')->where('status','publish')->first();
+    public function createAdd(Request $request){
+        // dd($request->all());
+        $validator = Validator::make($request->all(),[
+            'title' => 'required|min:20',
+            'content' => 'required|min:200',
+            'category' => 'required|min:3',
+            'status' => 'required',
+        ]);
 
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator->errors());
+        }
+
+        $data = Post::create([
+                    'title' => $request->title,
+                    'content' => $request->content,
+                    'category' => $request->category,
+                    'status' => $request->status,
+                ]);
+
+        return redirect()->route('post')->with('success','Add Data Successfully!');
+    }
+
+    public function edit($id){
+
+        $data = Post::select('id','title','content','category','status')->where('id',$id)->first();
 
         return view('post.edit',compact('data'));
+    }
+
+    public function editUpdate(Request $request, $id){
+        $validator = Validator::make($request->all(),[
+            'title' => 'required|min:20',
+            'content' => 'required|min:200',
+            'category' => 'required|min:3',
+            'status' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator->errors());
+        }
+
+        $data = Post::where('id',$id)->update([
+                    'title' => $request->title,
+                    'content' => $request->content,
+                    'category' => $request->category,
+                    'status' => $request->status,
+                ]);
+
+        return redirect()->route('post')->with('success','Edited Data Successfully!');
+
+    }
+
+    public function editTrash($id){
+
+        $data = Post::where('id',$id)->update([
+                    'status' => 'trash',
+                ]);
+
+    return redirect()->back()->with('success','Data add to Trash Successfully!');
+
+    }
+
+    public function preview(){
+
+        $data = Post::select('id','title','content','category','status')->where('status','publish')->paginate(2);
+
+        return view('post.preview',compact('data'));
     }
 }

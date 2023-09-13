@@ -1,7 +1,7 @@
 @extends('layout.dashboard')
 
 @section('title')
-    Edit Post
+    Add Post
 @endsection
 
 @push('addStyle')
@@ -12,15 +12,14 @@
     <div class="col-md-12">
         <div class="card mb-4">
             <div class="card-header">
-                <strong>Edit Post</strong>
-                <span class="small ms-1">{{ $data->title }}</span>
+                <strong>Add Post</strong>
             </div>
             <div class="card-body">
-                <form action="{{route('post.update',$data->id)}}" method="post">
+                <form action="{{route('post.create')}}" method="post">
                     @csrf
                     <div class="mb-3">
                         <label class="form-label" for="title">Title</label>
-                        <input class="form-control" id="title" type="text" name="title" value="{{$data->title}}">
+                        <input class="form-control" id="title" type="text" name="title">
                         @error('title')
                             <div class="invalid-feedback" style="display: inline">
                                 {{ $message }}
@@ -30,7 +29,7 @@
 
                     <div class="mb-3">
                         <label class="form-label" for="content">Content</label>
-                        <textarea class="form-control" id="content" rows="3" name="content">{{$data->content}}</textarea>
+                        <textarea class="form-control" id="content" rows="3" name="content"></textarea>
                         @error('content')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -39,7 +38,7 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="category">Category</label>
-                        <input class="form-control" id="category" type="text" name="category" value="{{$data->category}}">
+                        <input class="form-control" id="category" type="text" name="category">
                         @error('category')
                             <div class="invalid-feedback">
                                 {{ $message }}

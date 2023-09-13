@@ -56,7 +56,7 @@
         </li>
         <li class="nav-title">Article</li>
         <li class="nav-item">
-            <a class="nav-link" href="colors.html">
+            <a class="nav-link" href="{{route('post.preview')}}">
                 Preview
             </a>
         </li>
