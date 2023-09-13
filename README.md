@@ -6,10 +6,17 @@
 composer install
 ```
 
--   Next, run project with :
+-   copy .env and generate key :
 
 ```
-php artisan serve --port=8000
+cp .env.example .env
+php artisan key:generate
+```
+
+-   Edit file .env add some text in :
+
+```
+DB_DATABASE=article
 ```
 
 -   Run a migrate, choose "yes" if you not to make database yet. after that run a seeder:
@@ -17,6 +24,12 @@ php artisan serve --port=8000
 ```
 php artisan migrate
 php artisan db:seed
+```
+
+-   Next, run project with :
+
+```
+php artisan serve --port=8000
 ```
 
 -   If you want to check Collection of my [My Collection](https://documenter.getpostman.com/view/25782711/2s9YC31ti1).
