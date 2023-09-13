@@ -9,7 +9,7 @@ composer install
 -   Next, run project with :
 
 ```
-php artisan serve
+php artisan serve --port=8000
 ```
 
 -   Run a migrate, choose "yes" if you not to make database yet. after that run a seeder:
