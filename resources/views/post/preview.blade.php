@@ -14,7 +14,7 @@
             @forelse ($data as $item)
                 <div class="col-md-6">
                     <div class="card">
-                        <img class="card-img-top" src="assets/img/full.jpg" alt="">
+                        <img class="card-img-top" src="{{asset('template/assets/img/full.jpg')}}" alt="">
                         <div class="card-body">
                             <h5 class="card-title">{{$item->title}}</h5>
                             <p class="card-text">{{$item->content}}</p>
